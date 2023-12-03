@@ -1,0 +1,153 @@
+.search-bar{
+    display: flex;
+    align-items: center;
+    background-color: #00453e;
+    height: 45px;
+    padding: 5px;
+    position: static;
+}
+
+
+.amazon-logo{
+    background-image: url("./amazon-logo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 120px; 
+    height: 40px; 
+    display: block;
+}
+
+.deliver-to{
+    display: flex;
+    white-space: nowrap;
+    color: white;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.deliver-to__content{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.deliver-to__location{
+    font-weight: bold;
+}
+
+.deliver-to__icon{
+    width: 25px;
+    height: 35px;
+    margin-right: 3px;
+    background-image: url('./location-icon.png');
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.search-wrapper{
+    display: flex;
+    height: 40px;
+    min-width: 450px;
+    width: 100%;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+.search-input{
+    border: none;
+    width: 100%;
+}
+
+.select-wrapper{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    /* background-color: #e6e6e6; */
+    border: none;
+    background-color: #e6e6e6;
+    width: 50px;
+    border-radius: 5px 0 0 5px;
+}
+
+.select-options-wrapper{
+    display: flex;
+    align-items: end;
+    height: 40px;
+    width: 1px;
+}
+
+
+.select-all{
+    margin-left: 5px;
+    color: grey;
+    font-size: 13px;
+}
+
+select{
+    background-color: #e6e6e6;
+    border-radius: 5px 0 0 5px;
+    border: none;
+    /* display: none; */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select:focus {
+    outline: none;
+    border: none;
+  }
+.search-button{
+    width: 60px;
+    height: 100%;
+    background-color: #ffdfd7;
+    border-radius: 0 5px 5px 0;
+}
+
+.search-button:hover{
+    background-color: #fcc3b4;
+}
+
+.search-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar__right{
+    display: flex;
+    width: 600px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-bar__right-item{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    white-space: nowrap;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.shopping-cart{
+    height: 40px;
+    width: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./cart-icon.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

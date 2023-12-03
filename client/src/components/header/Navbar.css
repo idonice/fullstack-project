@@ -1,0 +1,27 @@
+.navbar{
+    display: flex;
+    position: static;
+    align-items: center;
+    text-align: left;
+    height: 39px;
+    background-color: #195851;
+}
+
+.nav-a {
+    margin: 5px 0 6px 0;
+    padding: 8px 9px;
+    text-decoration: none;
+    color: white;
+}
+.nav-a:hover{
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+.burger-icon{
+    height: 40px;
+    width: 40px;
+    background-image: url('./menu-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
