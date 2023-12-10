@@ -27,7 +27,10 @@ const App: React.FC = () => {
         <Header />
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/p' element={<ProductPage />} />
+          <Route path="/products/:productId" element={<ProductPage />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/' element={<HomePage />} />
         </Routes>
       </Router>
     </div>

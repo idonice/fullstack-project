@@ -1,4 +1,4 @@
-.search-bar{
+.search-bar {
     display: flex;
     align-items: center;
     background-color: #00453e;
@@ -8,16 +8,16 @@
 }
 
 
-.amazon-logo{
+.amazon-logo {
     background-image: url("./amazon-logo.png");
     background-size: cover;
     background-repeat: no-repeat;
-    width: 120px; 
-    height: 40px; 
+    width: 120px;
+    height: 40px;
     display: block;
 }
 
-.deliver-to{
+.deliver-to {
     display: flex;
     white-space: nowrap;
     color: white;
@@ -25,17 +25,17 @@
     margin: 0 20px;
 }
 
-.deliver-to__content{
+.deliver-to__content {
     display: flex;
     flex-direction: column;
     align-items: baseline;
 }
 
-.deliver-to__location{
+.deliver-to__location {
     font-weight: bold;
 }
 
-.deliver-to__icon{
+.deliver-to__icon {
     width: 25px;
     height: 35px;
     margin-right: 3px;
@@ -45,7 +45,7 @@
     background-repeat: no-repeat;
 }
 
-.search-wrapper{
+.search-wrapper {
     display: flex;
     height: 40px;
     min-width: 450px;
@@ -56,12 +56,12 @@
     justify-content: space-between;
 }
 
-.search-input{
+.search-input {
     border: none;
     width: 100%;
 }
 
-.select-wrapper{
+.select-wrapper {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -72,7 +72,7 @@
     border-radius: 5px 0 0 5px;
 }
 
-.select-options-wrapper{
+.select-options-wrapper {
     display: flex;
     align-items: end;
     height: 40px;
@@ -80,17 +80,16 @@
 }
 
 
-.select-all{
+.select-all {
     margin-left: 5px;
     color: grey;
     font-size: 13px;
 }
 
-select{
+select {
     background-color: #e6e6e6;
     border-radius: 5px 0 0 5px;
     border: none;
-    /* display: none; */
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -99,32 +98,33 @@ select{
 select:focus {
     outline: none;
     border: none;
-  }
-.search-button{
+}
+
+.search-button {
     width: 60px;
     height: 100%;
     background-color: #ffdfd7;
     border-radius: 0 5px 5px 0;
 }
 
-.search-button:hover{
+.search-button:hover {
     background-color: #fcc3b4;
 }
 
-.search-button{
+.search-button {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.search-bar__right{
+.search-bar__right {
     display: flex;
     width: 600px;
     align-items: center;
     justify-content: space-between;
 }
 
-.search-bar__right-item{
+.search-bar__right-item {
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -135,11 +135,11 @@ select:focus {
     white-space: nowrap;
 }
 
-.bold{
+.bold {
     font-weight: bold;
 }
 
-.shopping-cart{
+.shopping-cart {
     height: 40px;
     width: 50px;
     display: flex;

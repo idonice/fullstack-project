@@ -1,7 +1,11 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import Product from '../components/product/Product'
-
+import axios from 'axios';
+import Loader from '../components/shared/Loader';
+import { useParams } from 'react-router';
 const ProductPage: React.FC = () => {
+  const [product, setProduct] = useState(null);
   const data = {
     productID: 'p-am2023',
     productDetails: {
@@ -43,11 +47,31 @@ const ProductPage: React.FC = () => {
       `Built to Last: robust and durable zinc-alloy construction ensures stand stays looking like new while hinge is lab tested to retain its strength after more than 3,000 uses`
     ]
   }
-  return (
-    <div>
-      <Product data={data} />
-    </div>
-  )
+
+  const { productId } = useParams();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/products/${productId}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      }
+    };
+
+    fetchProduct();
+  }, []);
+
+  if (!product) {
+    return <Loader />;
+  } else {
+    return (
+      <div>
+        <Product data={product} />
+      </div>
+    )
+  }
 };
 
 export default ProductPage;
