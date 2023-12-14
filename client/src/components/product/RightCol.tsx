@@ -10,7 +10,7 @@ interface ChildProps {
 }
 const RightCol: React.FC<ChildProps> = ({ data }) => {
     return <div className="product-details__right">
-        <Price />
+        <Price price={data.price} />
         <Shipping data={data} />
         <div className="in-stock"><span className={data.stock ? 'stock' : ''}>{data.stock ? 'In Stock' : 'Sold Out'}</span></div>
         <DealButtons />

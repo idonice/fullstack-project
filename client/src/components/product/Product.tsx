@@ -18,6 +18,7 @@ const Product: React.FC<ChildProps> = ({ data }) => {
         <LeftCol data={data} />
         <RightCol data={data} />
       </div>
+
     </div>
   );
 };

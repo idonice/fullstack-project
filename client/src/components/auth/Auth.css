@@ -1,0 +1,78 @@
+.auth-page {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.signIn-wrapper {
+    margin: 0 auto;
+    width: 350px;
+
+}
+
+.signIn-form__wrapper {
+    padding: 30px;
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 20px auto;
+
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.auth-input {
+    height: 31px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 1px 0 rgba(0, 0, 0, .07) inset;
+    outline: 0;
+
+}
+
+#auth-button {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgba(213, 217, 217, .5);
+    margin: 20px 0;
+}
+
+.email-label {
+    font-weight: bold;
+    font-size: small;
+}
+
+.signUp__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #a7a7a7;
+
+
+}
+
+.signUp__text {
+    margin: 0 10px;
+    white-space: nowrap;
+    color: #a7a7a7;
+    font-size: small;
+}
+
+#signup-button {
+    background: #FFF;
+    border-color: #D5D9D9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px 0 rgba(213, 217, 217, .5);
+}

@@ -3,6 +3,7 @@ export interface IProduct {
   productDetails: {
     description: string;
     brand: string;
+    images: string[];
   };
   reviews: {
     stars: string;
