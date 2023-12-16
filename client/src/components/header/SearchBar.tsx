@@ -33,7 +33,7 @@ const SearchBar: React.FC = () => {
     </div>
     <div className="search-bar__right">
       <Link to={'/auth'} className="search-bar__right-item"><span>Hello, sign in</span><span className='bold'>Account & List</span></Link>
-      <Link to={'/'} className="search-bar__right-item"><div className="shopping-cart">{ }</div></Link>
+      <Link to={'/cart'} className="search-bar__right-item"><div className="shopping-cart">{ }</div></Link>
     </div>
   </div>;
 };

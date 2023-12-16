@@ -8,6 +8,7 @@ import AuthPage from './pages/AuthPage';
 import CategoryPage from './pages/CategoryPage';
 import { IProduct } from './types';
 import computers from "./products";
+import CartPage from './pages/CartPage';
 const products: IProduct = {
   productID: 'p-am2023',
   productDetails: {
@@ -59,6 +60,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/auth' element={<AuthPage />} />
+          <Route path='/cart' element={<CartPage />} />
           <Route path="/products/:productId" element={<ProductPage />} />
           <Route path='/category/*' element={<CategoryPage category={{ title: 'Computers', products: computers }} />} />
         </Routes>

@@ -8,14 +8,17 @@ interface ChildProps {
         title: string,
         checkbox: boolean,
         contents: string[] | { minRange: number; maxRange: number }[];
-    }
+    },
+
+    filtersHandler: (checkBoxValue: { property: string, value: string, isChecked: boolean }) => void;
 }
-const FilterGroup: React.FC<ChildProps> = ({ data }) => {
+
+const FilterGroup: React.FC<ChildProps> = ({ data, filtersHandler }) => {
 
     return <div className='filter-group'>
         <span className="filer-title bold">{data.title}</span>
-        {data.contents && data.contents.map((content) => {
-            return <FilterLine checkbox={data.checkbox} content={content} pricesLine={data.title === 'Price'} />
+        {data.contents && data.contents.map((content, i) => {
+            return <FilterLine key={`fl-${i}`} property={data.title} isCheckbox={data.checkbox} content={content} isPricesLine={data.title === 'Price'} filtersHandler={filtersHandler} />
         })}
     </div>;
 };

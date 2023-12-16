@@ -86,7 +86,7 @@
     font-size: 13px;
 }
 
-select {
+/* select {
     background-color: #e6e6e6;
     width: 100px;
     border-radius: 5px 0 0 5px;
@@ -94,7 +94,7 @@ select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-}
+} */
 
 select:focus {
     outline: none;

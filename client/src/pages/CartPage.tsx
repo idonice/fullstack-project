@@ -1,17 +1,16 @@
 import React from 'react';
-import { IProduct } from '../../types';
-import ProductCard from './ProductCard';
-const pro: IProduct = {
+import '../components/shoppingCart/ShoppingCart.css';
+import Total from '../components/shoppingCart/Total';
+import CartContainer from '../components/shoppingCart/CartContainer';
+import { IProduct } from '../types';
+import { log } from 'console';
+
+const p: IProduct = {
     productID: 'p-am2023',
     productDetails: {
         description: "Apple 2023 MacBook Air Laptop with M2 chip: 15.3-inch Liquid Retina Display, 8GB Unified Memory, 256GB SSD Storage; Midnight with AppleCare+ (3 Years)",
         brand: "Apple",
-        images: [
-            'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/refurb-macbook-air-gold-202002?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1610746650000',
-            'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/refurb-macbook-air-gold-202002_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1610746650000',
-            'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/refurb-macbook-air-gold-202002_AV4?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1610746640000',
-            'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/refurb-macbook-air-gold-202002_AV5?wid=2000&hei=2000&fmt=jpeg&qlt=90&.v=1610746646000'
-        ]
+        images: ['https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1664472289661']
     },
     reviews: {
         stars: "4.6",
@@ -20,7 +19,7 @@ const pro: IProduct = {
     },
     price: {
         curr: '$',
-        whole: 99,
+        whole: 569,
         fraction: 99
     },
     shipping: {
@@ -49,43 +48,20 @@ const pro: IProduct = {
     ]
 }
 
-interface ChildProps {
-    data: IProduct[];
-    filters: Filter[];
-}
+const CartPage: React.FC = () => {
+    const list: IProduct[] = [p, p, p]
+    let quantity: number = list.length;
+    let price: number = 0;
+    list.forEach((p) => {
+        price += p.price.whole + (p.price.fraction / 100);
 
-interface Filter {
-    key: string;
-    value: any;
-}
-
-
-const Category: React.FC<ChildProps> = ({ data, filters }) => {
-    function productsFilter(products: IProduct[], filters: Filter[]): IProduct[] {
-        if (filters.length === 0) {
-            // No filters provided, return the whole products array
-            return products;
-        } else {
-            console.log(filters);
-            let temp: IProduct[] = [];
-            products.forEach((p) => {
-                filters.forEach(f => {
-                    if (f.key === 'Brand' && f.value === p.productDetails.brand)
-                        temp.push(p)
-                })
-            })
-            return temp;
-        }
-    }
-
-
-    return <div className='product-card__list'>
-        <h2 className='result-title'>Results</h2>
-        <span style={{ color: '#565959', fontSize: '14px' }}>Price and other details may vary based on product size and color.</span>
-        {productsFilter(data, filters).map((product, i) => {
-            return <ProductCard key={`pc-${i}`} data={product} />
-        })}
+    })
+    return <div className='cart-page'>
+        <CartContainer cartList={list} />
+        <div className="right-col">
+            <Total quantity={quantity} totalPrice={price} currency={list[0].price.curr} />
+        </div>
     </div>;
 };
 
-export default Category;
+export default CartPage;

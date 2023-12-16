@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FilterGroup from './FilterGroup';
 
 interface ChildProps {
@@ -6,12 +6,14 @@ interface ChildProps {
         title: string,
         checkbox: boolean,
         contents: string[] | { minRange: number; maxRange: number }[];
-    }[]
+    }[],
+    filtersHandler: (checkBoxValue: { property: string, value: string, isChecked: boolean }) => void;
 }
-const FilterSidebar: React.FC<ChildProps> = ({ data }) => {
+
+const FilterSidebar: React.FC<ChildProps> = ({ data, filtersHandler }) => {
     return <div className="category-page__filter-sidebar">
-        {data.map((filter) => {
-            return <FilterGroup data={filter} />
+        {data.map((filter, i) => {
+            return <FilterGroup key={`fg-${i}`} data={filter} filtersHandler={filtersHandler} />
         })}
     </div>;
 };
