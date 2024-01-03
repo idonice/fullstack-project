@@ -8,10 +8,10 @@ const Stars: React.FC<ChildProps> = ({ stars }) => {
     let starArray = [];
     for (let i = 1; i <= 5; i++) {
         if (stars) {
-            starArray.push(<Star />);
+            starArray.push(<Star key={i} />);
             stars--;
         } else
-            starArray.push(<EmptyStar />);
+            starArray.push(<EmptyStar key={i} />);
     }
     return <div className='stars'>{starArray}</div>;
 };

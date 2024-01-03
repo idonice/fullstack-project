@@ -4,13 +4,13 @@ interface ChildProps {
     content: any;
     isCheckbox: boolean;
     isPricesLine: boolean;
-    filtersHandler: (checkBoxValue: { property: string, value: string, isChecked: boolean }) => void;
+    filtersHandler: (checkBoxValue: { key: string, value: string, isChecked: boolean }) => void;
 }
 
 const FilterLine: React.FC<ChildProps> = ({ property, content, isCheckbox, isPricesLine, filtersHandler }) => {
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, checked } = event.target;
-        filtersHandler({ property: name, value: value, isChecked: checked });
+        filtersHandler({ key: name, value: value, isChecked: checked });
     };
     //to move checking to parent
 

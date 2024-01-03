@@ -1,6 +1,5 @@
 import React from 'react';
 import FilterLine from './FilterLine';
-import noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 
 interface ChildProps {
@@ -10,7 +9,7 @@ interface ChildProps {
         contents: string[] | { minRange: number; maxRange: number }[];
     },
 
-    filtersHandler: (checkBoxValue: { property: string, value: string, isChecked: boolean }) => void;
+    filtersHandler: (checkBoxValue: { key: string, value: string, isChecked: boolean }) => void;
 }
 
 const FilterGroup: React.FC<ChildProps> = ({ data, filtersHandler }) => {

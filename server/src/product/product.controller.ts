@@ -1,17 +1,18 @@
 // product.controller.ts
 
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './product.model';
 
-@Controller('products')
+@Controller('p')
 export class ProductController {
   constructor(private readonly productService: ProductService) { }
 
   @Get()
-  async findAll(): Promise<Product[]> {
-    return this.productService.findAll();
+  async findProducts(@Query('c') category?: string, @Query('sc') subcategory?: string, @Query('maxPrice') maxPrice?: number, @Query('brand') brand?: string): Promise<Product[]> {
+    return this.productService.findProducts(category, subcategory, maxPrice, brand);
   }
+
   @Get(':productID') // Use the parameter name from the URL
   async getProductById(@Param('productID') productID: string): Promise<Product> {
     try {

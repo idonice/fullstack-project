@@ -1,6 +1,8 @@
 export interface IProduct {
   productID: string;
-  productDetails: {
+  category: string;
+  subcategory: string;
+  details: {
     description: string;
     brand: string;
     images: string[];
@@ -12,8 +14,7 @@ export interface IProduct {
   };
   price: {
     curr: string;
-    whole: number;
-    fraction: number;
+    price: number;
   };
   shipping: {
     price: number;
@@ -25,8 +26,8 @@ export interface IProduct {
     img: string;
   }[];
   modelsID: { id: string, name: string }[];
-  dealDetails: { title: string, content: string }[];
+  saleDetails: { title: string, content: string }[];
   stock: number;
-  additionalDetails: { title: string, content: string }[];
+  specification: { title: string, content: string }[];
   about: string[];
 }

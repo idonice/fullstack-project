@@ -7,7 +7,7 @@ interface ChildProps {
         checkbox: boolean,
         contents: string[] | { minRange: number; maxRange: number }[];
     }[],
-    filtersHandler: (checkBoxValue: { property: string, value: string, isChecked: boolean }) => void;
+    filtersHandler: (checkBoxValue: { key: string, value: string, isChecked: boolean }) => void;
 }
 
 const FilterSidebar: React.FC<ChildProps> = ({ data, filtersHandler }) => {

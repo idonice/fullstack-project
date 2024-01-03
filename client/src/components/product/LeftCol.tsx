@@ -14,15 +14,15 @@ interface ChildProps {
 const LeftCol: React.FC<ChildProps> = ({ data }) => {
     return <div className="product-details__left">
         <div className="product-details__title">
-            <span>{data.productDetails.description}</span>
+            <span>{data.details.description}</span>
         </div>
-        <Link to={'/'}><span className="special-details">Brand: {data.productDetails.brand}</span></Link>
+        <Link to={'/'}><span className="special-details">Brand: {data.details.brand}</span></Link>
         <Reviews reviews={data.reviews} />
         <Price price={data.price} />
         <Shipping data={data} />
         {data.colors.length && <ColorsGallery colors={data.colors} />}
         {data.modelsID.length && <Models data={data.modelsID} />}
-        {data.additionalDetails && <AdditionalDetails data={data.additionalDetails} />}
+        {data.specification && <AdditionalDetails data={data.specification} />}
         {data.about && <About data={data.about} />}
     </div>
 };

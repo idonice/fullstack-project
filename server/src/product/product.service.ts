@@ -1,4 +1,4 @@
-// product.service.ts
+
 
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -8,10 +8,25 @@ import { Product } from './product.model';
 @Injectable()
 export class ProductService {
   constructor(@InjectModel(Product.name) private productModel: Model<Product>) { }
+  async findProducts(category?: string, subcategory?: string, maxPrice?: number, brand?: string): Promise<Product[]> {
+    let query: any = {};
 
-  async findAll(): Promise<Product[]> {
-    return this.productModel.find().exec();
+    if (category) {
+      query['category'] = category;
+    }
+
+    if (subcategory) {
+      query['subcategory'] = subcategory;
+    }
+    if (brand) {
+      const capitalized = brand.charAt(0).toUpperCase() + brand.slice(1);
+      query['productDetails.brand'] = capitalized;
+    }
+    console.log(query);
+
+    return this.productModel.find(query).exec();
   }
+
 
   async createProduct(product: Product): Promise<Product> {
     const createdProduct = new this.productModel(product);

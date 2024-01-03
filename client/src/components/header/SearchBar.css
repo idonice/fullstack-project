@@ -59,6 +59,7 @@
 .search-input {
     border: none;
     width: 100%;
+    border-radius: 5px 0 0 5px;
 }
 
 .select-wrapper {

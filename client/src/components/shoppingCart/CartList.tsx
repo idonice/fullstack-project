@@ -1,6 +1,6 @@
 import React from 'react';
 import CartItem from './CartItem';
-import ProductCard from '../product/ProductCard';
+import ProductCard from '../category/ProductCard';
 import { IProduct } from '../../types';
 
 interface ChildProps {

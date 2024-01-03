@@ -1,7 +1,7 @@
 import Header from "./Header";
 
 const HeaderWrapper: React.FC = () => {
-    // Check the route to determine whether to render the Header
+    // no header in auth page
     const isAuthPage = window.location.pathname.startsWith('/auth');
 
     return (

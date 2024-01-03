@@ -1,13 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Product from '../components/product/Product'
-import axios from 'axios';
-import Loader from '../components/shared/Loader';
 import { useParams } from 'react-router';
+import axios from 'axios';
+import Product from '../components/product/Product'
+import Loader from '../components/shared/Loader';
 const ProductPage: React.FC = () => {
   const [product, setProduct] = useState(null);
-
-
   const { productId } = useParams();
 
   useEffect(() => {

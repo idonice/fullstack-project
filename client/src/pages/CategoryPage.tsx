@@ -1,82 +1,106 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../components/product/Product.css';
-import Category from '../components/product/Category';
-import FilterSidebar from '../components/product/FilterSidebar';
-import { IProduct } from '../types';
-
-interface ChildProps {
-    category: {
-        title: string,
-        products: IProduct[];
-    }
-}
-
-interface Filter {
-    key: string;
-    value: any;
-}
+import Category from '../components/category/Category';
+import FilterSidebar from '../components/category/FilterSidebar';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import Loader from '../components/shared/Loader';
 
 interface checkBoxValues {
     checkBoxValues: {
-        property: string, // brands, color 
+        key: string, // brands, color 
         value: string, // apple, red
         isChecked: boolean
     }
 }
 
-const CategoryPage: React.FC<ChildProps> = ({ category }) => {
-    const [checkboxValues, setCheckboxValues] = useState<checkBoxValues>();
-    const [filterQuerys, setFilterQuerys] = useState<Filter[]>([]);
+function toUrlFriendlyString(str: string): string {
+    return str.split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('%20');
+}
 
-    let minPrice = Number.MAX_SAFE_INTEGER;
-    let maxPrice = Number.MIN_SAFE_INTEGER;
+const CategoryPage: React.FC = () => {
+    const { c, sc } = useParams(); //category , subcategory
+    const [data, setData] = useState<any>(null);
+    // const [queryString, setQueryString] = useState<string>('');
+    const [filterQuerys, setFilterQuerys] = useState<{ key: string, value: string[] }[]>([]);
 
-    for (const product of category.products) {
-        const price = product.price.whole + product.price.fraction / 100;
-        minPrice = Math.min(minPrice, price);
-        maxPrice = Math.max(maxPrice, price);
+    const queryStringHandler = (): string => {
+        let tempString: string = '';
+        if (c) {
+            tempString ? tempString += `&c=${c}` : tempString += `c=${c}`;
+        }
+        if (sc) {
+            tempString ? tempString += `&sc=${sc}` : tempString += `sc=${sc}`;
+        }
+        tempString ? tempString = '?' + tempString : tempString = tempString;
+        return tempString;
     }
-    const priceRange = maxPrice - minPrice;
-    const numberOfRanges = 5;
-    const rangeSize = priceRange / numberOfRanges;
-    const priceRanges: { minRange: number; maxRange: number }[] = [];
-    for (let i = 0; i < numberOfRanges; i++) {
-        const minRange = minPrice + i * rangeSize;
-        const maxRange = minRange + rangeSize;
 
-        priceRanges.push({
-            minRange,
-            maxRange,
-        });
-    }
+    useEffect(() => {
+        const queryString = queryStringHandler();
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/p/${queryString}`);
+                setData(response.data);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        };
+        fetchProducts();
+    }, []);
     let brands: string[] = [];
-    for (const product of category.products) {
-        const brand = product.productDetails.brand;
-        if (!brands.includes(brand)) {
-            brands.push(brand);
+    if (data) {
+        for (const product of data) {
+            const brand = product.details.brand;
+            if (!brands.includes(brand)) {
+                brands.push(brand);
+            }
         }
     }
 
-    const handleCheckboxChange = (checkBoxValue: { property: string, value: string, isChecked: boolean }) => {
-        const { property, value, isChecked } = checkBoxValue;
+    const handleCheckboxChange = (checkBoxValue: { key: string, value: string, isChecked: boolean }) => {
+        const { key, value, isChecked } = checkBoxValue;
         if (isChecked) {
             // Checkbox is checked, update state
-            setFilterQuerys((prev) => [
-                ...prev,
-                { key: property, value: value },
-            ])
+            setFilterQuerys((prev) => {
+                console.log('pushing');
+
+                let temp = prev;
+                const itemIndex = prev.findIndex(item => item.key === key);
+                if (itemIndex !== -1) {
+                    temp[itemIndex].value.push(value);
+                } else {
+                    temp.push({ key, value: [value] })
+                }
+                return temp;
+            })
         } else {
-            setFilterQuerys((prev) => prev.filter((item) => item.value !== value));
+            setFilterQuerys((prev) => {
+                let temp = prev;
+                const itemIndex = prev.findIndex(item => item.key === key);
+                if (temp[itemIndex].value.length === 1 && temp[itemIndex].value[0] === value) {
+                    return temp.splice(itemIndex, 1);
+                } else {
+                    const valueIndex = prev[itemIndex].value.indexOf(value);
+                    const newKey = temp[itemIndex].key;
+                    const newValues = temp[itemIndex].value.splice(valueIndex, 1);
+                    temp.splice(itemIndex, 1);
+                    temp.push({ key: newKey, value: newValues });
+                    return temp;
+                }
+            })
         }
     }
 
     return <div className="category-page">
-        <div className="category-page__header">{category.products.length} results for "{category.title}"</div>
+        < div className="category-page__header" > {data ? data.length : 0} results for "{sc ? sc : c}"</div >
         <div className="category-filter__wrapper">
-            <FilterSidebar data={[{ title: 'Brand', checkbox: true, contents: brands }, { title: 'Price', checkbox: false, contents: priceRanges }]} filtersHandler={handleCheckboxChange} />
-            <Category data={category.products} filters={filterQuerys} />
+            <FilterSidebar data={[{ title: 'Brand', checkbox: true, contents: brands }]} filtersHandler={handleCheckboxChange} />
+            <Category data={data} />
         </div>
-    </div>
+    </div >
 };
 
 export default CategoryPage;
